@@ -8,28 +8,37 @@ void xoaXuongDong(char x[]){
 void ChenSV(SV a[],int &n)
 {  
     n++;
-    capNhatSinhVien(a[n]);
-    for (int i=n-1;i>=0;i--)
+    for (int i=n;i>0;i--)
     {
-        a[i].id=a[i-1].id;
-        a[i].diemGT=a[i-1].diemGT;
+    	a[i].id=a[i-1].id;
+    	strcpy(a[i].ten,a[i-1].ten);
+    	strcpy(a[i].gioiTinh,a[i-1].gioiTinh);
         a[i].diemKTLT=a[i-1].diemKTLT;
-        strcpy(a[i].ten,a[i-1].ten);
+        a[i].diemGT=a[i-1].diemGT;
+        a[i].diemXSTK=a[i-1].diemXSTK;
+        a[i].ngaySinh.ngay=a[i-1].ngaySinh.ngay;
+        a[i].ngaySinh.thang=a[i-1].ngaySinh.thang;
+        a[i].ngaySinh.nam=a[i-1].ngaySinh.nam;
+        a[i].tuoi=a[i-1].tuoi;
+        strcpy(a[i].hocLuc,a[i-1].hocLuc);
+        a[i].diemTrungBinh = a[i-1].diemTrungBinh;
+        strcpy(a[i].maLop,a[i-1].maLop);
     }
-    }
+capNhatSinhVien(a[0]);
+}
 int dangnhap(int c){
 char a[10],b[10];
 	textcolor(11);
-	printf("		------------- Dang Nhap tai khoan cua ban ------------------ !\n");
-	printf("		--------------Nhap tai khoan: ");
+	printf("					------------- Dang Nhap tai khoan cua ban ------------------ !\n");
+	printf("					--------------Nhap tai khoan: ");
 	scanf("%s",&a);
-	printf("		--------------Nhap mat khau: ");
+	printf("					--------------Nhap mat khau: ");
 	scanf("%s",&b);
 	if(strcmp(a,"admin")==0 && strcmp(b,"123123")==0){
 		return 1;
 	}else{
 	textcolor(4);
-	printf("		Vui Long Dang Nhap Lai !\n");
+	printf("				Vui Long Dang Nhap Lai !\n");
 		c++;
 		if(c==3){
 			return 0;
@@ -37,13 +46,13 @@ char a[10],b[10];
 	dangnhap(c);
 	}
 }
-void capNhatSV(SV a[], int id, int n) {
+void capNhatSVTheoID(SV ds[], int id, int n) {
     int found = 0;
     for(int i = 0; i < n; i++) {
-        if (a[i].id == id) {
+        if (ds[i].id == id) {
             found = 1;
             printf("Cap nhat thong tin sinh vien co id :%d",id);
-            capNhatSinhVien(a[i]);
+            capNhatSinhVien(ds[i]);
             printf("Cap nhat sinh vien thanh cong");
             break;
         }
@@ -53,18 +62,19 @@ void capNhatSV(SV a[], int id, int n) {
     }
 }
 void nhapSinhVien(SV &sv){
-	printf("		\nID: "); scanf("%d", &sv.id);
-	printf("		\nTen: "); fflush(stdin); fgets(sv.ten, sizeof(sv.ten), stdin); xoaXuongDong(sv.ten);
-	printf("		\nGioi tinh: "); fflush(stdin); fgets(sv.gioiTinh, sizeof(sv.gioiTinh), stdin); xoaXuongDong(sv.gioiTinh);
-	printf("		\nNgay sinh:"); scanf("%d%d%d", &sv.ngaySinh.ngay, &sv.ngaySinh.thang, &sv.ngaySinh.nam);
-	printf("		\nDiem Mon KTLT: "); scanf("%f", &sv.diemKTLT);
-	printf("		\nDiem Mon GT: "); scanf("%f", &sv.diemGT);
-	printf("		\nDiem Mon XSTK: "); scanf("%f", &sv.diemXSTK);
-	printf("		\nMa Lop: "); fflush(stdin); fgets(sv.maLop, sizeof(sv.maLop), stdin); xoaXuongDong(sv.maLop);
+	printf("\t\nID: "); scanf("%d", &sv.id);
+	printf("\t		\nTen: "); fflush(stdin); fgets(sv.ten, sizeof(sv.ten), stdin); xoaXuongDong(sv.ten);
+	printf("\t		\nGioi tinh: "); fflush(stdin); fgets(sv.gioiTinh, sizeof(sv.gioiTinh), stdin); xoaXuongDong(sv.gioiTinh);
+	printf("\t		\nNgay sinh:"); scanf("%d%d%d", &sv.ngaySinh.ngay, &sv.ngaySinh.thang, &sv.ngaySinh.nam);
+	printf("\t		\nDiem Mon KTLT: "); scanf("%f", &sv.diemKTLT);
+	printf("\t		\nDiem Mon GT: "); scanf("%f", &sv.diemGT);
+	printf("\t		\nDiem Mon XSTK: "); scanf("%f", &sv.diemXSTK);
+	printf("\t		\nMa Lop: "); fflush(stdin); fgets(sv.maLop, sizeof(sv.maLop), stdin); xoaXuongDong(sv.maLop);
 }
 
 
 void inSinhVien(SV sv){
+	textcolor(11);
 	printf("%5d \t %20s \t %10s \t %2d/%d/%d \t %10d \t %6.2f \t %6.2f \t %6.2f \t %6.2f \t %5s \t\t %10s", sv.id, sv.ten, sv.gioiTinh, sv.ngaySinh.ngay, sv.ngaySinh.thang, sv.ngaySinh.nam, sv.tuoi, sv.diemKTLT, sv.diemGT, sv.diemXSTK, sv.diemTrungBinh, sv.hocLuc, sv.maLop);
 }
 
@@ -120,7 +130,7 @@ void xuatDanhSachSinhVien(SV ds[], int n){
 	}
 }
 
-float timMax_DiemTrungBinh(SV ds[], int n){
+float timDiemTrungBinhLonNhat(SV ds[], int n){
 	float max = ds[0].diemTrungBinh;
 	for(int i=0; i<n; i++){
 		if(max< ds[i].diemTrungBinh){
@@ -129,7 +139,7 @@ float timMax_DiemTrungBinh(SV ds[], int n){
 	}
 	return max;
 }
-int timMin_Tuoi(SV ds[], int n){
+int timTuoiNhoNhat(SV ds[], int n){
 	int min = ds[0].tuoi;
 	for(int i=0; i<n; i++){
 		if(min> ds[i].tuoi){
@@ -182,12 +192,6 @@ void xoaSinhVienTheoId(SV ds[], int &n, int id){
 			return;
 		}
 	}
-}
-void themSinhVien(SV ds[],int &n){
-	ds[n+1]=ds[n+2];
-	n++;
-	nhapSinhVien(ds[n]);
-	capNhatSinhVien(ds[n]);
 }
 void sapXepDanhSachSinhVienTheoDTB(SV ds[], int n){
 	SV temp;

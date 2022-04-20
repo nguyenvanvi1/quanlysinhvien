@@ -40,10 +40,16 @@ void tinhDiemTrungBinh(SV *sv);
 
 //Ham xep loai theo diem trung binh
 void xepLoai(SV &sv);
-int dangnhap();
-void capNhatSV(SV a[], int id, int n);
 
+// Ham Dang nhap
+int dangnhap();
+
+//Ham cap nhat thong tin sinh vien
+void capNhatSVTheoID(SV ds[], int id, int n);
+
+// Ham them sinh vien vao dau danh sach
 void ChenSV(SV a[],int &n);
+
 // Ham cap nhat sinh vien
 void capNhatSinhVien(SV &sv);
 
@@ -54,10 +60,10 @@ void nhapDanhSachSinhVien(SV ds[], int &n);
 void xuatDanhSachSinhVien(SV ds[], int n);
 
 // Ham tim  diem trung binh lon nhat
-float timMax_DiemTrungBinh(SV ds[], int n);
+float timDiemTrungBinhLonNhat(SV ds[], int n);
 
 // Ham tinh tuoi nho nhat
-int timMin_Tuoi(SV ds[], int n);
+int timTuoiNhoNhat(SV ds[], int n);
 
 // Ham xuat ra 1 danh sach sinh vien xep loai
 void xuatDanhSachSinhVienXepLoai(SV ds[], int n);
@@ -76,5 +82,7 @@ void sapXepDanhSachSinhVienTheoDTB(SV ds[], int n);
 
 //Ham Sap xep sinh vien theo ten
 void sapXepDanhSachSinhVienTheoTen(SV ds[], int n);
+// Ham xuat FILE 
+void xuatFile(SV ds[], int n, char fileName[])
 
 

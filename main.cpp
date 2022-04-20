@@ -5,28 +5,28 @@ int main(){
 	int n,b[100];
 	int chon;
 	char fileName[] = "DSSV1.txt";
-	if(dangnhap(0)==1){
+//	if(dangnhap(0)==1){
 		do{
-		textcolor(11);
+		textcolor(9);
 		printf("\n");
-		printf("					***************************************************\n");
-		printf("					***     CHUONG TRINH QUAN LY SINH VIEN    	***\n");
-		printf("					***     1- Nhap danh sach sinh vien       	***\n");
-		printf("					*** 	2- Xuat danh sach sinh vien       	***\n");
-		printf("					***     3- Tim diem trung binh lon nhat         ***\n");
-		printf("					***     4- Tim  Tuoi nho nhat                  	***\n");
-		printf("					***  	5- Xuat danh sach sinh vien theo lop    ***\n");
-		printf("					***	6- Xuat danh sach sinh vien loai gioi 	***\n");
-		printf("					*** 	7- Sap xep sinh vien theo diem trung binh**\n");
-		printf("					*** 	8- Sap xep sinh vien theo ten 	  	***\n");
-		printf("					***	9- Tim sinh vien theo ten		***\n");
-		printf("					***	10-Xoa sinh vien theo ID		***\n");
-		printf("					*** 	11-Cap Nhat sinh vien theo id   	***\n");
-		printf("					***  	12-Xuat danh sach sinh vien vao file	***\n");
-		printf("					***  	13-them sinh vien 			***\n");
-		printf("					***	0- Thoat				***\n");
-		printf("					*******       Nhap lua chon cua ban!     **********\n");
-		printf("					***************************************************\n");
+		printf("\t									CHUONG TRINH QUAN LY SINH VIEN \n");
+		textcolor(11);
+		printf("					-----------------------------------------------------------------------------------------------------------\n");
+		printf("					|       1- Nhap danh sach sinh vien\t 		|	2- Xuat danh sach sinh vien		  |\n");
+			printf("					-----------------------------------------------------------------------------------------------------------\n");
+		printf("					|       3- Tim diem trung binh lon nhat\t 		|	4- Tim Tuoi nho nhat			  |\n");
+			printf("					-----------------------------------------------------------------------------------------------------------\n");
+		printf("					|  	5- Xuat danh sach sinh vien theo lop\t 	|	6- Xuat danh sach sinh vien hoc luc	  |\n");
+			printf("					-----------------------------------------------------------------------------------------------------------\n");
+		printf("					| 	7- Sap xep sinh vien theo diem trung binh\t|	8- Sap xep sinh vien theo ten		  |\n");
+			printf("					-----------------------------------------------------------------------------------------------------------\n");
+		printf("					|	9- Tim sinh vien theo ten\t 		|	10-Xoa sinh vien theo ID		  |\n");
+			printf("					-----------------------------------------------------------------------------------------------------------\n");
+		printf("					| 	11-Cap Nhat sinh vien theo ID\t 		|	12-Them sinh vien			  |\n");
+			printf("					-----------------------------------------------------------------------------------------------------------\n");
+		printf("					|  	13-Xuat danh sach sinh vien vao file\t 	|	0- Thoat                                  |\n");
+			printf("					-----------------------------------------------------------------------------------------------------------\n");
+		printf("									--------      Nhap lua chon cua ban!     --------\n");
 		scanf("%d", &chon);
 		switch(chon){
 			case 1:
@@ -38,11 +38,11 @@ int main(){
 					nhapPhimBatKy();
 					break;	
 			case 3:
-					printf("\n Max DTB = %.2f", timMax_DiemTrungBinh(ds, n));
+					printf("\n Max DTB = %.2f", timDiemTrungBinhLonNhat(ds, n));
 					nhapPhimBatKy();
 					break;
 			case 4:
-					printf("\n Min Tuoi = %d", timMin_Tuoi(ds, n));
+					printf("\n Min Tuoi = %d", timTuoiNhoNhat(ds, n));
 					nhapPhimBatKy();
 					break;
 			case 5:
@@ -87,24 +87,24 @@ int main(){
 			case 11:
 					int tem;
 					printf("\nNhap id can sua thong tin: "); scanf("%d", &tem);
-					capNhatSV(ds,tem,n);
+					capNhatSVTheoID(ds,tem,n);
 					nhapPhimBatKy();
 					break;
-			case 13: 
+			case 12: 
 					printf("Them sinh vien");
 					ChenSV(ds,n);
 					
-			case 12:
+			case 13:
 			        xuatFile(ds, n, fileName);
                     printf("\nXuat DSSV thanh cong vao file %s!", fileName);
 					break;
 		}
 	} while(n!=0);
-	}else{
-		printf("		Ban da dang nhap qua so lan !\n");
-		textcolor(11);
-		printf("		Nhan Phim Bat Ki De Thoat Chuong Trinh");
-	}
+//	}else{
+//		printf("		Ban da dang nhap qua so lan !\n");
+//		textcolor(11);
+//		printf("		Nhan Phim Bat Ki De Thoat Chuong Trinh");
+//	}
 
 }
 
