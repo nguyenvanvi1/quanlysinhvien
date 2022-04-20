@@ -5,7 +5,7 @@ int main(){
 	int n,b[100];
 	int chon;
 	char fileName[] = "DSSV1.txt";
-//	if(dangnhap(0)==1){
+	if(dangnhap(0)==1){
 		do{
 		textcolor(9);
 		printf("\n");
@@ -66,14 +66,14 @@ int main(){
 					break;
 			case 8:
 					printf("\nDanh sach sau khi sap xep theo ten\n");
-					xuatDanhSachSinhVien(ds, n);
-					xoaSinhVienTheoId(ds, n, 1);
+					sapXepDanhSachSinhVienTheoTen(ds,n);
+					xuatDanhSachSinhVien(ds,n);
 					nhapPhimBatKy();
 					break;
 			case 9:
 					char tensv[20];
 					printf("\nNhap ten sinh vien can tim: "); fflush(stdin); fgets(tensv, sizeof(tensv), stdin); xoaXuongDong(tensv); 
-					printf("\nKet qua tim sinh vien: %d", timSinhVienTheoTen(ds, n, tensv));
+					timSinhVienTheoTen(ds,n,tensv);
 					nhapPhimBatKy();
 					break;
 			case 10:
@@ -93,6 +93,8 @@ int main(){
 			case 12: 
 					printf("Them sinh vien");
 					ChenSV(ds,n);
+					nhapPhimBatKy();
+					break;
 					
 			case 13:
 			        xuatFile(ds, n, fileName);
@@ -100,11 +102,11 @@ int main(){
 					break;
 		}
 	} while(n!=0);
-//	}else{
-//		printf("		Ban da dang nhap qua so lan !\n");
-//		textcolor(11);
-//		printf("		Nhan Phim Bat Ki De Thoat Chuong Trinh");
-//	}
+	}else{
+		printf("		Ban da dang nhap qua so lan !\n");
+		textcolor(11);
+		printf("		Nhan Phim Bat Ki De Thoat Chuong Trinh");
+	}
 
 }
 

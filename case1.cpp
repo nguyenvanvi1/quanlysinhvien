@@ -1,10 +1,5 @@
 #include "case1.h"
-void xoaXuongDong(char x[]){
-	size_t len = strlen(x);
-	if(x[len-1]=='\n'){
-		x[len-1]='\0';
-	}
-}
+
 void ChenSV(SV a[],int &n)
 {  
     n++;
@@ -25,6 +20,12 @@ void ChenSV(SV a[],int &n)
         strcpy(a[i].maLop,a[i-1].maLop);
     }
 capNhatSinhVien(a[0]);
+}
+void xoaXuongDong(char x[]){
+	size_t len = strlen(x);
+	if(x[len-1]=='\n'){
+		x[len-1]='\0';
+	}
 }
 int dangnhap(int c){
 char a[10],b[10];
@@ -62,14 +63,14 @@ void capNhatSVTheoID(SV ds[], int id, int n) {
     }
 }
 void nhapSinhVien(SV &sv){
-	printf("\t\nID: "); scanf("%d", &sv.id);
-	printf("\t		\nTen: "); fflush(stdin); fgets(sv.ten, sizeof(sv.ten), stdin); xoaXuongDong(sv.ten);
-	printf("\t		\nGioi tinh: "); fflush(stdin); fgets(sv.gioiTinh, sizeof(sv.gioiTinh), stdin); xoaXuongDong(sv.gioiTinh);
-	printf("\t		\nNgay sinh:"); scanf("%d%d%d", &sv.ngaySinh.ngay, &sv.ngaySinh.thang, &sv.ngaySinh.nam);
-	printf("\t		\nDiem Mon KTLT: "); scanf("%f", &sv.diemKTLT);
-	printf("\t		\nDiem Mon GT: "); scanf("%f", &sv.diemGT);
-	printf("\t		\nDiem Mon XSTK: "); scanf("%f", &sv.diemXSTK);
-	printf("\t		\nMa Lop: "); fflush(stdin); fgets(sv.maLop, sizeof(sv.maLop), stdin); xoaXuongDong(sv.maLop);
+	printf("\n\tID: "); scanf("%d", &sv.id);
+	printf("\n\tTen: "); fflush(stdin); fgets(sv.ten, sizeof(sv.ten), stdin); xoaXuongDong(sv.ten);
+	printf("\n\tGioi tinh: "); fflush(stdin); fgets(sv.gioiTinh, sizeof(sv.gioiTinh), stdin); xoaXuongDong(sv.gioiTinh);
+	printf("\n\tNgay sinh:"); scanf("%d%d%d", &sv.ngaySinh.ngay, &sv.ngaySinh.thang, &sv.ngaySinh.nam);
+	printf("\n\tDiem Mon KTLT: "); scanf("%f", &sv.diemKTLT);
+	printf("\n\tDiem Mon GT: "); scanf("%f", &sv.diemGT);
+	printf("\n\tDiem Mon XSTK: "); scanf("%f", &sv.diemXSTK);
+	printf("\n\tMa Lop: "); fflush(stdin); fgets(sv.maLop, sizeof(sv.maLop), stdin); xoaXuongDong(sv.maLop);
 }
 
 
@@ -113,11 +114,11 @@ void capNhatSinhVien(SV &sv){
 
 void nhapDanhSachSinhVien(SV ds[], int &n){
 	do{
-		printf("\nNhap Vao So Luong Sinh Vien:");
+		printf("\n\tNhap Vao So Luong Sinh Vien:");
 		scanf("%d", &n);
 	}while(n<=0);
 	for(int i=0; i<n ; i++){
-		printf("\nNhap vao sinh vien thu %d: ", i+1);
+		printf("\n\tNhap vao sinh vien thu %d: ", i+1);
 		capNhatSinhVien(ds[i]);
 	}
 }
@@ -173,14 +174,17 @@ void xuatDanhSachSinhVienTheoLop(SV ds[], int n, char lop[]){
 }
 
 int timSinhVienTheoTen(SV ds[], int n, char ten[]){
-	// 0 => false
-	// 1 => true
+	int temp=0;
 	for(int i=0; i<n ; i++){
 		if(strstr(strupr(ds[i].ten), strupr(ten))){
+			printf("Sinh vien can tim la: \n");
 			inSinhVien(ds[i]);
+			temp=1;
 		}
 	}
-	return 0;
+	if(temp==0){
+		printf("Khong Tim thay sinh vien");
+	}
 }
 void xoaSinhVienTheoId(SV ds[], int &n, int id){
 	for(int i=0; i<n ; i++){
@@ -209,7 +213,7 @@ void sapXepDanhSachSinhVienTheoDTB(SV ds[], int n){
 void sapXepDanhSachSinhVienTheoTen(SV ds[], int n){
 	for(int i=0; i<n-1; i++){
 		for(int j=i+1; j<n; j++){
-			if(strcmp(strupr(ds[i].ten), strupr(ds[j].ten))>0){
+			if(strcmp(ds[i].ten, ds[j].ten)>0){
 				SV temp;
 				temp = ds[i];
 				ds[i] = ds[j];

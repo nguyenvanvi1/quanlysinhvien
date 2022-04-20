@@ -83,6 +83,6 @@ void sapXepDanhSachSinhVienTheoDTB(SV ds[], int n);
 //Ham Sap xep sinh vien theo ten
 void sapXepDanhSachSinhVienTheoTen(SV ds[], int n);
 // Ham xuat FILE 
-void xuatFile(SV ds[], int n, char fileName[])
+void xuatFile(SV ds[], int n, char fileName[]);
 
 
