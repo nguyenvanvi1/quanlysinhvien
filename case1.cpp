@@ -35,17 +35,16 @@ void nhapSinhVien(SV &sv){
 	printf("\n\tDiem Mon XSTK: "); scanf("%f", &sv.diemXSTK);
 	printf("\n\tMa Lop: "); fflush(stdin); fgets(sv.maLop, sizeof(sv.maLop), stdin); xoaXuongDong(sv.maLop);
 }
+void inSinhVien(SV sv){
+	printf("%5d \t  %10s \t %2d/%d/%d \t %10d \t %6.2f \t %6.2f \t %6.2f \t %6.2f \t \t %10s", sv.id, sv.gioiTinh, sv.ngaySinh.ngay, sv.ngaySinh.thang, sv.ngaySinh.nam,sv.tuoi , sv.diemKTLT, sv.diemGT, sv.diemXSTK, sv.diemTrungBinh,  sv.maLop);
+	chuyendoi(sv.ten);printf("\nHo ten: %20s ",sv.ten);
+}
 void tinhTuoi(SV &sv){
 	time_t TTIME = time(0);
 	tm* NOW = localtime(&TTIME);
 	int namHienTai = NOW->tm_year+1900;
 	sv.tuoi = namHienTai - sv.ngaySinh.nam;
 }
-
-void tinhDiemTrungBinh(SV *sv){
-	sv->diemTrungBinh = (sv->diemKTLT+sv->diemGT+sv->diemXSTK)/3;
-}
-
 void xepLoai(SV &sv){
 	if(sv.diemTrungBinh>9){
 		strcpy(sv.hocLuc, "XUAT SAC");
@@ -110,6 +109,14 @@ void nhapDanhSachSinhVien(SV ds[], int &n){
 	    xepLoai(ds[i]);
 	}
 }
+void xuatDanhSachSinhVien(SV ds[], int n){
+		printf("%5s \t  %10s \t %10s \t %10s\t  %6s \t %6s \t %6s \t %6s  \t %10s", "ID",  "Gioi Tinh","Ngay Sinh", "Tuoi", "Diem KTLT", "Diem GT", "Diem XSTK", "Diem TB", "Ma Lop");
+		printf("\n");
+	for(int i=0; i<n ; i++){
+		inSinhVien(ds[i]);
+		printf("\n");
+	}
+}
 int timSinhVienTheoTen(SV ds[], int n, char ten[]){
 	int temp=0;
 	for(int i=0; i<n ; i++){
@@ -164,21 +171,6 @@ void chuyendoi(char x[]){
 		}
 	}
 }
-void nhapSinhVien(SV &sv){
-	printf("\n\tID: "); scanf("%d", &sv.id);
-	printf("\n\tTen: "); fflush(stdin); fgets(sv.ten, sizeof(sv.ten), stdin); //xoaXuongDong(sv.ten);
-	printf("\n\tGioi tinh: "); fflush(stdin); fgets(sv.gioiTinh, sizeof(sv.gioiTinh), stdin); xoaXuongDong(sv.gioiTinh);
-	printf("\n\tNgay sinh:"); scanf("%d%d%d", &sv.ngaySinh.ngay, &sv.ngaySinh.thang, &sv.ngaySinh.nam);
-	printf("\n\tDiem Mon KTLT: "); scanf("%f", &sv.diemKTLT);
-	printf("\n\tDiem Mon GT: "); scanf("%f", &sv.diemGT);
-	printf("\n\tDiem Mon XSTK: "); scanf("%f", &sv.diemXSTK);
-	printf("\n\tMa Lop: "); fflush(stdin); fgets(sv.maLop, sizeof(sv.maLop), stdin); xoaXuongDong(sv.maLop);
-}
-void inSinhVien(SV sv){
-	printf("%5d \t  %10s \t %2d/%d/%d \t %10d \t %6.2f \t %6.2f \t %6.2f \t %6.2f \t \t %10s", sv.id, sv.gioiTinh, sv.ngaySinh.ngay, sv.ngaySinh.thang, sv.ngaySinh.nam,sv.tuoi , sv.diemKTLT, sv.diemGT, sv.diemXSTK, sv.diemTrungBinh,  sv.maLop);
-	chuyendoi(sv.ten);printf("\nHo ten: %20s ",sv.ten);
-}
-
 void tinhDiemTrungBinh(SV *sv){
 	sv->diemTrungBinh = (sv->diemKTLT+sv->diemGT+sv->diemXSTK)/3;
 }
@@ -206,29 +198,6 @@ int timTuoiNhoNhat(SV ds[], int n){
 	}
 	return min;
 }	
-void capNhatSinhVien(SV &sv){
-	nhapSinhVien(sv);
-	tinhTuoi(sv);
-	tinhDiemTrungBinh(&sv);
-}
-void nhapDanhSachSinhVien(SV ds[], int &n){
-	do{
-		printf("\n\tNhap Vao So Luong Sinh Vien:");
-		scanf("%d", &n);
-	}while(n<=0);
-	for(int i=0; i<n ; i++){
-		printf("\n\tNhap vao sinh vien thu %d: ", i+1);
-		capNhatSinhVien(ds[i]);
-	}
-}
-void xuatDanhSachSinhVien(SV ds[], int n){
-		printf("%5s \t  %10s \t %10s \t %10s\t  %6s \t %6s \t %6s \t %6s  \t %10s", "ID",  "Gioi Tinh","Ngay Sinh", "Tuoi", "Diem KTLT", "Diem GT", "Diem XSTK", "Diem TB", "Ma Lop");
-		printf("\n");
-	for(int i=0; i<n ; i++){
-		inSinhVien(ds[i]);
-		printf("\n");
-	}
-}
 void ChenSV(SV a[],int &n)
 {  
     n++;
