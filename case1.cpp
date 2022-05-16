@@ -36,7 +36,7 @@ void nhapSinhVien(SV &sv){
 	printf("\n\tMa Lop: "); fflush(stdin); fgets(sv.maLop, sizeof(sv.maLop), stdin); xoaXuongDong(sv.maLop);
 }
 void inSinhVien(SV sv){
-	printf("%5d \t  %10s \t %2d/%d/%d \t %10d \t %6.2f \t %6.2f \t %6.2f \t %6.2f \t %5s \t\t %6s", sv.id, sv.gioiTinh, sv.ngaySinh.ngay, sv.ngaySinh.thang, sv.ngaySinh.nam,sv.tuoi , sv.diemKTLT, sv.diemGT, sv.diemXSTK, sv.diemTrungBinh,sv.hocluc,sv.maLop);
+	printf("%5d \t  %10s \t %2d/%d/%d \t %10d \t %6.2f \t %6.2f \t %6.2f \t %6.2f \t %5s \t\t %6s", sv.id, sv.gioiTinh, sv.ngaySinh.ngay, sv.ngaySinh.thang, sv.ngaySinh.nam,sv.tuoi , sv.diemKTLT, sv.diemGT, sv.diemXSTK, sv.diemTrungBinh,sv.hocLuc,sv.maLop);
 	chuyendoi(sv.ten);printf("\nHo ten: %20s ",sv.ten);
 }
 void tinhTuoi(SV &sv){
