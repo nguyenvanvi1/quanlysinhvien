@@ -103,9 +103,9 @@ int main(){
 		}
 	} while(n!=0);
 	}else{
-		printf("		Ban da dang nhap qua so lan !\n");
+		printf("					Ban da dang nhap qua so lan !\n");
 		textcolor(11);
-		printf("		Nhan Phim Bat Ki De Thoat Chuong Trinh");
+		printf("					Nhan Phim Bat Ki De Thoat Chuong Trinh");
 	}
 
 }

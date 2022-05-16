@@ -5,6 +5,17 @@ void xoaXuongDong(char x[]){
 		x[len-1]='\0';
 	}
 }
+void chuyendoi(char x[]){
+	for(int i=0;i<strlen(x);i++){
+		if(i==0||(i>0&&x[i-1]==32)){
+			if(x[i]>=97&&x[i]<=122)
+			    x[i]=x[i]-32;
+		}else{
+			if(x[i]>=65&&x[i]<=90)
+			    x[i]=x[i]+32;
+		}
+	}
+}
 int dangnhap(int c){
 char a[10],b[10];
 	textcolor(11);
@@ -17,7 +28,7 @@ char a[10],b[10];
 		return 1;
 	}else{
 	textcolor(4);
-	printf("				Vui Long Dang Nhap Lai !\n");
+	printf("						Vui Long Dang Nhap Lai !\n");
 		c++;
 		if(c==3){
 			return 0;
@@ -36,8 +47,8 @@ void nhapSinhVien(SV &sv){
 	printf("\n\tMa Lop: "); fflush(stdin); fgets(sv.maLop, sizeof(sv.maLop), stdin); xoaXuongDong(sv.maLop);
 }
 void inSinhVien(SV sv){
-	printf("%5d \t  %10s \t %2d/%d/%d \t %10d \t %6.2f \t %6.2f \t %6.2f \t %6.2f \t %5s \t\t %6s", sv.id, sv.gioiTinh, sv.ngaySinh.ngay, sv.ngaySinh.thang, sv.ngaySinh.nam,sv.tuoi , sv.diemKTLT, sv.diemGT, sv.diemXSTK, sv.diemTrungBinh,sv.hocLuc,sv.maLop);
-	chuyendoi(sv.ten);printf("\nHo ten: %20s ",sv.ten);
+	chuyendoi(sv.ten);
+	printf("%5d \t  %20s \t %10s \t %2d/%d/%d \t %10d \t %6.2f \t %6.2f \t %6.2f \t %6.2f \t %5s \t\t %6s", sv.id, sv.ten, sv.gioiTinh, sv.ngaySinh.ngay, sv.ngaySinh.thang, sv.ngaySinh.nam,sv.tuoi , sv.diemKTLT, sv.diemGT, sv.diemXSTK, sv.diemTrungBinh,sv.hocLuc,sv.maLop);
 }
 void xepLoai(SV &sv){
 	if(sv.diemTrungBinh>9){
@@ -104,7 +115,7 @@ void nhapDanhSachSinhVien(SV ds[], int &n){
 	}
 }
 void xuatDanhSachSinhVien(SV ds[], int n){
-		printf("%5s \t  %10s \t %10s \t %10s\t  %6s \t %6s \t %6s \t %6s \t %5s  \t %6s", "ID",  "Gioi Tinh","Ngay Sinh", "Tuoi", "Diem KTLT", "Diem GT", "Diem XSTK", "Diem TB","Xep Loai", "Ma Lop");
+		printf("%5s \t %20s \t  %10s \t %10s \t %10s\t  %6s \t %6s \t %6s \t %6s \t %5s  \t %6s", "ID", "Ten",  "Gioi Tinh","Ngay Sinh", "Tuoi", "Diem KTLT", "Diem GT", "Diem XSTK", "Diem TB","Xep Loai", "Ma Lop");
 		printf("\n");
 	for(int i=0; i<n ; i++){
 		inSinhVien(ds[i]);
@@ -118,6 +129,7 @@ int timSinhVienTheoTen(SV ds[], int n, char ten[]){
 			printf("Sinh vien can tim la: \n");
 			inSinhVien(ds[i]);
 			temp=1;
+			break;
 		}
 	}
 	if(temp==0){
@@ -152,19 +164,8 @@ void nhapPhimBatKy(){
 		printf("\nNhap phim bat ky de tiep tuc!");
         getch();
 }
-/*Trần Quóc Thịnh 6251071095
+/*Tr?n Qu�c Th?nh 6251071095
 */
-void chuyendoi(char x[]){
-	for(int i=0;i<strlen(x);i++){
-		if(i==0||(i>0&&x[i-1]==32)){
-			if(x[i]>=97&&x[i]<=122)
-			    x[i]=x[i]-32;
-		}else{
-			if(x[i]>=65&&x[i]<=90)
-			    x[i]=x[i]+32;
-		}
-	}
-}
 void tinhDiemTrungBinh(SV *sv){
 	sv->diemTrungBinh = (sv->diemKTLT+sv->diemGT+sv->diemXSTK)/3;
 }
@@ -240,7 +241,7 @@ void xuatFile(SV ds[], int n, char fileName[]){
 //nguyen duc thang
 void xuatDanhSachSinhVienXepLoai(SV ds[], int n, char xepLoai[]){
 	printf("\n Danh sach sinh vien xep loai %s\n",xepLoai);
-	printf("%5s \t %20s \t %10s \t %10s \t %10s \t %6s \t %6s \t %6s \t %6s \t %5s \t %10s", "ID", "Ten", "Gioi Tinh", "Ngay Sinh", "Tuoi", "Diem KTLT", "Diem GT", "Diem XSTK", "Diem TB", "XepLoai", "Ma Lop");
+	printf("%5s \t %20s \t  %10s \t %10s \t %10s\t  %6s \t %6s \t %6s \t %6s \t %5s  \t %6s", "ID", "Ten",  "Gioi Tinh","Ngay Sinh", "Tuoi", "Diem KTLT", "Diem GT", "Diem XSTK", "Diem TB","Xep Loai", "Ma Lop");
 	printf("\n");
 	for(int i=0; i<n ; i++){
 		if (strcmp(strupr(ds[i].hocLuc),strupr(xepLoai))==0){
@@ -252,7 +253,7 @@ void xuatDanhSachSinhVienXepLoai(SV ds[], int n, char xepLoai[]){
 
 void xuatDanhSachSinhVienTheoLop(SV ds[], int n, char lop[]){
 	printf("\n Danh sach sinh vien thuoc lop %s\n", lop);
-	printf("%5s \t %20s \t %10s \t %10s \t %10s \t %6s \t %6s \t %6s \t %6s \t %5s \t %10s", "ID", "Ten", "Gioi Tinh", "Ngay Sinh", "Tuoi", "Diem KTLT", "Diem GT", "Diem XSTK", "Diem TB", "XepLoai", "Ma Lop");
+	printf("%5s \t %20s \t  %10s \t %10s \t %10s\t  %6s \t %6s \t %6s \t %6s \t %5s  \t %6s", "ID", "Ten",  "Gioi Tinh","Ngay Sinh", "Tuoi", "Diem KTLT", "Diem GT", "Diem XSTK", "Diem TB","Xep Loai", "Ma Lop");
 	printf("\n");
 	for(int i=0; i<n ; i++){
 		if (strcmp(strupr(ds[i].maLop), strupr(lop))==0){
