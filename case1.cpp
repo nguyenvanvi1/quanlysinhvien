@@ -120,4 +120,5 @@ void nhapPhimBatKy(){
 		printf("\nNhap phim bat ky de tiep tuc!");
         getch();
 }
-
+/*Trần Quóc Thịnh 6251071095
+*/
