@@ -39,12 +39,6 @@ void inSinhVien(SV sv){
 	printf("%5d \t  %10s \t %2d/%d/%d \t %10d \t %6.2f \t %6.2f \t %6.2f \t %6.2f \t %5s \t\t %6s", sv.id, sv.gioiTinh, sv.ngaySinh.ngay, sv.ngaySinh.thang, sv.ngaySinh.nam,sv.tuoi , sv.diemKTLT, sv.diemGT, sv.diemXSTK, sv.diemTrungBinh,sv.hocLuc,sv.maLop);
 	chuyendoi(sv.ten);printf("\nHo ten: %20s ",sv.ten);
 }
-void tinhTuoi(SV &sv){
-	time_t TTIME = time(0);
-	tm* NOW = localtime(&TTIME);
-	int namHienTai = NOW->tm_year+1900;
-	sv.tuoi = namHienTai - sv.ngaySinh.nam;
-}
 void xepLoai(SV &sv){
 	if(sv.diemTrungBinh>9){
 		strcpy(sv.hocLuc, "XUAT SAC");
