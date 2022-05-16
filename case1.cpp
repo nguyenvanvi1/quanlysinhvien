@@ -36,7 +36,7 @@ void nhapSinhVien(SV &sv){
 	printf("\n\tMa Lop: "); fflush(stdin); fgets(sv.maLop, sizeof(sv.maLop), stdin); xoaXuongDong(sv.maLop);
 }
 void inSinhVien(SV sv){
-	printf("%5d \t  %10s \t %2d/%d/%d \t %10d \t %6.2f \t %6.2f \t %6.2f \t %6.2f \t \t %10s", sv.id, sv.gioiTinh, sv.ngaySinh.ngay, sv.ngaySinh.thang, sv.ngaySinh.nam,sv.tuoi , sv.diemKTLT, sv.diemGT, sv.diemXSTK, sv.diemTrungBinh,  sv.maLop);
+	printf("%5d \t  %10s \t %2d/%d/%d \t %10d \t %6.2f \t %6.2f \t %6.2f \t %6.2f \t %5s \t\t %6s", sv.id, sv.gioiTinh, sv.ngaySinh.ngay, sv.ngaySinh.thang, sv.ngaySinh.nam,sv.tuoi , sv.diemKTLT, sv.diemGT, sv.diemXSTK, sv.diemTrungBinh,sv.hocluc,sv.maLop);
 	chuyendoi(sv.ten);printf("\nHo ten: %20s ",sv.ten);
 }
 void tinhTuoi(SV &sv){
@@ -50,7 +50,7 @@ void xepLoai(SV &sv){
 		strcpy(sv.hocLuc, "XUAT SAC");
 	}else if(sv.diemTrungBinh>8){
 		strcpy(sv.hocLuc, "GIOI");
-	}else if(sv.diemTrungBinh>7){
+	}else if(sv.diemTrungBinh>6.5){
 		strcpy(sv.hocLuc, "KHA");
 	}else if(sv.diemTrungBinh>5){
 		strcpy(sv.hocLuc, "TRUNG BINH");
@@ -110,7 +110,7 @@ void nhapDanhSachSinhVien(SV ds[], int &n){
 	}
 }
 void xuatDanhSachSinhVien(SV ds[], int n){
-		printf("%5s \t  %10s \t %10s \t %10s\t  %6s \t %6s \t %6s \t %6s  \t %10s", "ID",  "Gioi Tinh","Ngay Sinh", "Tuoi", "Diem KTLT", "Diem GT", "Diem XSTK", "Diem TB", "Ma Lop");
+		printf("%5s \t  %10s \t %10s \t %10s\t  %6s \t %6s \t %6s \t %6s \t %5s  \t %6s", "ID",  "Gioi Tinh","Ngay Sinh", "Tuoi", "Diem KTLT", "Diem GT", "Diem XSTK", "Diem TB","Xep Loai", "Ma Lop");
 		printf("\n");
 	for(int i=0; i<n ; i++){
 		inSinhVien(ds[i]);
