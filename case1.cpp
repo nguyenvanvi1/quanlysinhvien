@@ -243,3 +243,39 @@ void xuatFile(SV ds[], int n, char fileName[]){
     }
     fclose (fp);
 }
+//nguyen duc thang
+void xuatDanhSachSinhVienXepLoai(SV ds[], int n, char xepLoai[]){
+	printf("\n Danh sach sinh vien xep loai %s\n",xepLoai);
+	printf("%5s \t %20s \t %10s \t %10s \t %10s \t %6s \t %6s \t %6s \t %6s \t %5s \t %10s", "ID", "Ten", "Gioi Tinh", "Ngay Sinh", "Tuoi", "Diem KTLT", "Diem GT", "Diem XSTK", "Diem TB", "XepLoai", "Ma Lop");
+	printf("\n");
+	for(int i=0; i<n ; i++){
+		if (strcmp(strupr(ds[i].hocLuc),strupr(xepLoai))==0){
+			inSinhVien(ds[i]);
+			printf("\n");
+		}
+	}
+}
+
+void xuatDanhSachSinhVienTheoLop(SV ds[], int n, char lop[]){
+	printf("\n Danh sach sinh vien thuoc lop %s\n", lop);
+	printf("%5s \t %20s \t %10s \t %10s \t %10s \t %6s \t %6s \t %6s \t %6s \t %5s \t %10s", "ID", "Ten", "Gioi Tinh", "Ngay Sinh", "Tuoi", "Diem KTLT", "Diem GT", "Diem XSTK", "Diem TB", "XepLoai", "Ma Lop");
+	printf("\n");
+	for(int i=0; i<n ; i++){
+		if (strcmp(strupr(ds[i].maLop), strupr(lop))==0){
+			inSinhVien(ds[i]);
+			printf("\n");
+		}
+	}
+}
+void sapXepDanhSachSinhVienTheoDTB(SV ds[], int n){
+	SV temp;
+	for(int i=0; i<n-1; i++){
+		for(int j=i+1; j<n; j++){
+			if(ds[i].diemTrungBinh>ds[j].diemTrungBinh){
+				temp = ds[i];
+				ds[i] = ds[j];
+				ds[j]=temp;
+			}
+		}
+	}
+}
