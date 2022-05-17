@@ -81,6 +81,16 @@ int check(SV ds[],int n){
     }
 	return 0;
 }
+int checkname(SV ds[],int n){
+	for(int i=0;i<n;i++){
+		for (int j=i+1;j<n;j++){
+			if(strcmp(ds[i].ten,ds[j].ten)==0){
+				return 1;
+			}
+		}
+    }
+	return 0;
+}
 void nhapDanhSachSinhVien(SV ds[], int &n){
 	do{
 		printf("\n\tNhap Vao So Luong Sinh Vien:");
@@ -91,20 +101,22 @@ void nhapDanhSachSinhVien(SV ds[], int &n){
 		do{
 			printf("\n\tID: "); scanf("%d", &ds[i].id);
 		}while (check(ds,n)==1);
+		do{
 		printf("\n\tTen: "); fflush(stdin); fgets(ds[i].ten, sizeof(ds[i].ten), stdin); xoaXuongDong(ds[i].ten);
-	printf("\n\tGioi tinh: "); fflush(stdin); fgets(ds[i].gioiTinh, sizeof(ds[i].gioiTinh), stdin); xoaXuongDong(ds[i].gioiTinh);
-	do{
+		}while(checkname(ds,n)==1);
+	         printf("\n\tGioi tinh: "); fflush(stdin); fgets(ds[i].gioiTinh, sizeof(ds[i].gioiTinh), stdin); xoaXuongDong(ds[i].gioiTinh);
+	        do{
 		printf("\n\tNgay sinh: ");
 		scanf("%d",&ds[i].ngaySinh.ngay);
-	}while(ds[i].ngaySinh.ngay > 31||ds[i].ngaySinh.ngay <1 );
-	do{
+	        }while(ds[i].ngaySinh.ngay > 31||ds[i].ngaySinh.ngay <1 );
+	       do{
 		printf("\n\tThang sinh: ");
 		scanf("%d",&ds[i].ngaySinh.thang);
-	}while(ds[i].ngaySinh.thang > 12|| ds[i].ngaySinh.thang<1);
-	do{
+	       }while(ds[i].ngaySinh.thang > 12|| ds[i].ngaySinh.thang<1);
+	        do{
 		printf("\n\tNam sinh: ");
 		scanf("%d",&ds[i].ngaySinh.nam);
-	}while(ds[i].ngaySinh.nam > 2022 || ds[i].ngaySinh.nam<1);
+	        }while(ds[i].ngaySinh.nam > 2022 || ds[i].ngaySinh.nam<1);
 	printf("\n\tDiem Mon KTLT: "); scanf("%f", &ds[i].diemKTLT);
 	printf("\n\tDiem Mon GT: "); scanf("%f", &ds[i].diemGT);
 	printf("\n\tDiem Mon XSTK: "); scanf("%f", &ds[i].diemXSTK);
@@ -164,7 +176,7 @@ void nhapPhimBatKy(){
 		printf("\nNhap phim bat ky de tiep tuc!");
         getch();
 }
-/*Tr?n Quóc Th?nh 6251071095
+/*Tr?n QuÃ³c Th?nh 6251071095
 */
 void tinhDiemTrungBinh(SV *sv){
 	sv->diemTrungBinh = (sv->diemKTLT+sv->diemGT+sv->diemXSTK)/3;
